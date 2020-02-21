@@ -1,7 +1,5 @@
 package com.zzg.mybatis.generator.bridge;
 
-import com.jcraft.jsch.Session;
-import com.zzg.mybatis.generator.controller.PictureProcessStateController;
 import com.zzg.mybatis.generator.model.DatabaseConfig;
 import com.zzg.mybatis.generator.model.DbType;
 import com.zzg.mybatis.generator.model.GeneratorConfig;
@@ -67,7 +65,8 @@ public class MybatisGeneratorBridge {
 	    configuration.addClasspathEntry(connectorLibPath);
         // Table configuration
         TableConfiguration tableConfig = new TableConfiguration(context);
-        TableConfigContext.setTableConfiguration(tableConfig);
+        ConfigContext.setTableConfiguration(tableConfig);
+        ConfigContext.setBaseMapperDir(generatorConfig.getBaseMapperDir());
         tableConfig.setTableName(generatorConfig.getTableName());
         tableConfig.setDomainObjectName(generatorConfig.getDomainObjectName());
         if(!generatorConfig.isUseExample()) {
@@ -115,9 +114,9 @@ public class MybatisGeneratorBridge {
                 //在上述读写分离被代理的情况下，会得不到正确的主键
             }
 			tableConfig.setGeneratedKey(new GeneratedKey(generatorConfig.getGenerateKeys(), dbType2, true, null));
-		    TableConfigContext.setPrimaryKeyName(generatorConfig.getGenerateKeys());
+		    ConfigContext.setPrimaryKeyName(generatorConfig.getGenerateKeys());
 		} else {
-		    TableConfigContext.setPrimaryKeyName("");
+		    ConfigContext.setPrimaryKeyName("");
         }
 
         if (generatorConfig.getMapperName() != null) {

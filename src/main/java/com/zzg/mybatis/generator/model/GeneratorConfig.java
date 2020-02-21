@@ -26,6 +26,8 @@ public class GeneratorConfig {
 
 	private String daoTargetFolder;
 
+	private String baseMapperDir;
+
 	private String mapperName;
 
 	private String mappingXMLPackage;
@@ -294,5 +296,13 @@ public class GeneratorConfig {
 
 	public boolean isUseDAOExtendStyle() {
 		return useDAOExtendStyle;
+	}
+
+	public String getBaseMapperDir() {
+		return baseMapperDir;
+	}
+
+	public void setBaseMapperDir(String baseMapperDir) {
+		this.baseMapperDir = baseMapperDir;
 	}
 }

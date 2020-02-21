@@ -1,9 +1,13 @@
 package com.zzg.mybatis.generator.plugins;
 
+import com.zzg.mybatis.generator.bridge.ConfigContext;
+import com.zzg.mybatis.generator.util.MyStringUtils;
+import com.zzg.mybatis.generator.util.Util;
 import org.mybatis.generator.api.*;
 import org.mybatis.generator.api.dom.java.*;
 import org.mybatis.generator.exception.ShellException;
 import org.mybatis.generator.internal.DefaultShellCallback;
+import sun.security.krb5.internal.ccache.CCacheInputStream;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -40,7 +44,7 @@ public class CommonMapperInterfacePlugin extends PluginAdapter {
         boolean hasPk = introspectedTable.hasPrimaryKeyColumns();
         JavaFormatter javaFormatter = context.getJavaFormatter();
         String daoTargetDir = context.getJavaClientGeneratorConfiguration().getTargetProject();
-        String daoTargetPackage = context.getJavaClientGeneratorConfiguration().getTargetPackage();
+        String daoTargetPackage = Util.isEmpty(ConfigContext.getBaseMapperDir()) ? context.getJavaClientGeneratorConfiguration().getTargetPackage() : ConfigContext.getBaseMapperDir();
         List<GeneratedJavaFile> mapperJavaFiles = new ArrayList<>();
         String javaFileEncoding = context.getProperty("javaFileEncoding");
         Interface mapperInterface = new Interface(daoTargetPackage + DEFAULT_DAO_SUPER_CLASS);
@@ -66,16 +70,14 @@ public class CommonMapperInterfacePlugin extends PluginAdapter {
 			if (isUseExample()) {
 				daoBaseInterfaceJavaType.addTypeArgument(new FullyQualifiedJavaType("E"));
 			}
-            // TODO 这里添加自定义插件接口
-            //
+
             this.methods.add(SelectBySelectivePlugin.getInterface());
 			this.methods.add(SelectBySelectiveAndReturnOneRecordPlugin.getInterface());
 			this.methods.add(BatchUpdateByPrimaryKeySelectivePlugin.getInterface());
 			this.methods.add(BatchInsertBySelectivePlugin.getInterface());
-            if (!this.methods.isEmpty()) {
-                for (Method method : methods) {
-                    mapperInterface.addMethod(method);
-                }
+
+            for (Method method : methods) {
+                mapperInterface.addMethod(method);
             }
 
             List<GeneratedJavaFile> generatedJavaFiles = introspectedTable.getGeneratedJavaFiles();
@@ -86,7 +88,7 @@ public class CommonMapperInterfacePlugin extends PluginAdapter {
                 if (modelName.endsWith("Mapper")) {
                 }
             }
-            GeneratedJavaFile mapperJavafile = new GeneratedJavaFile(mapperInterface, daoTargetDir, javaFileEncoding, javaFormatter);
+            GeneratedJavaFile mapperJavafile = new GeneratedJavaFile(mapperInterface, daoTargetDir , javaFileEncoding, javaFormatter);
             try {
                 File mapperDir = shellCallback.getDirectory(daoTargetDir, daoTargetPackage);
                 File mapperFile = new File(mapperDir, mapperJavafile.getFileName());
@@ -108,7 +110,10 @@ public class CommonMapperInterfacePlugin extends PluginAdapter {
         interfaze.addJavaDocLine("/**");
         interfaze.addJavaDocLine(" * " + interfaze.getType().getShortName() + "继承基类");
         interfaze.addJavaDocLine(" */");
-
+        String baseMapperDir = "";
+        if (ConfigContext.getBaseMapperDir() != null && ConfigContext.getBaseMapperDir() != "") {
+            baseMapperDir += ConfigContext.getBaseMapperDir() + DEFAULT_DAO_SUPER_CLASS;
+        }
         String daoSuperClass = interfaze.getType().getPackageName() + DEFAULT_DAO_SUPER_CLASS;
         FullyQualifiedJavaType daoSuperType = new FullyQualifiedJavaType(daoSuperClass);
 
@@ -137,6 +142,7 @@ public class CommonMapperInterfacePlugin extends PluginAdapter {
 		}
         interfaze.addImportedType(baseModelJavaType);
         interfaze.addImportedType(daoSuperType);
+        if (baseMapperDir != "") interfaze.addImportedType(new FullyQualifiedJavaType(baseMapperDir));
         interfaze.addSuperInterface(daoSuperType);
         return true;
     }

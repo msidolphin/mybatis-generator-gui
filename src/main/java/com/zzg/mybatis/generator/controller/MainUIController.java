@@ -69,6 +69,8 @@ public class MainUIController extends BaseFXController {
     @FXML
     private TextField daoTargetProject;
     @FXML
+    private TextField baseMapperDir;
+    @FXML
     private TextField mapperName;
     @FXML
     private TextField projectFolderField;
@@ -382,6 +384,7 @@ public class MainUIController extends BaseFXController {
         generatorConfig.setModelPackageTargetFolder(modelTargetProject.getText());
         generatorConfig.setDaoPackage(daoTargetPackage.getText());
         generatorConfig.setDaoTargetFolder(daoTargetProject.getText());
+        generatorConfig.setBaseMapperDir(baseMapperDir.getText());
         generatorConfig.setMapperName(mapperName.getText());
         generatorConfig.setMappingXMLPackage(mapperTargetPackage.getText());
         generatorConfig.setMappingXMLTargetFolder(mappingTargetProject.getText());
@@ -412,6 +415,7 @@ public class MainUIController extends BaseFXController {
         modelTargetProject.setText(generatorConfig.getModelPackageTargetFolder());
         daoTargetPackage.setText(generatorConfig.getDaoPackage());
 		daoTargetProject.setText(generatorConfig.getDaoTargetFolder());
+		baseMapperDir.setText(generatorConfig.getBaseMapperDir());
 		mapperName.setText(generatorConfig.getMapperName());
 		mapperTargetPackage.setText(generatorConfig.getMappingXMLPackage());
         mappingTargetProject.setText(generatorConfig.getMappingXMLTargetFolder());
