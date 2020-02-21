@@ -169,7 +169,6 @@ public class MybatisGeneratorBridge {
         daoConfig.setTargetPackage(generatorConfig.getDaoPackage());
         daoConfig.setTargetProject(generatorConfig.getProjectFolder() + "/" + generatorConfig.getDaoTargetFolder());
 
-
         context.setId("myid");
         context.addTableConfiguration(tableConfig);
         context.setJdbcConnectionConfiguration(jdbcConfig);
