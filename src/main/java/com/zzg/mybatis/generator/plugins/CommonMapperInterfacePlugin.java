@@ -16,9 +16,9 @@ import static org.mybatis.generator.internal.util.StringUtility.stringHasValue;
  *
  * @author slankka on 2018/3/11.
  */
-public class CommonDAOInterfacePlugin extends PluginAdapter {
+public class CommonMapperInterfacePlugin extends PluginAdapter {
 
-    private static final String DEFAULT_DAO_SUPER_CLASS = ".MyBatisBaseDao";
+    private static final String DEFAULT_DAO_SUPER_CLASS = ".MyBatisBaseMapper";
     private static final FullyQualifiedJavaType PARAM_ANNOTATION_TYPE = new FullyQualifiedJavaType("org.apache.ibatis.annotations.Param");
     private static final FullyQualifiedJavaType LIST_TYPE = FullyQualifiedJavaType.getNewListInstance();
     private static final FullyQualifiedJavaType SERIALIZEBLE_TYPE = new FullyQualifiedJavaType("java.io.Serializable");
@@ -27,7 +27,7 @@ public class CommonDAOInterfacePlugin extends PluginAdapter {
 
     private ShellCallback shellCallback = null;
 
-    public CommonDAOInterfacePlugin() {
+    public CommonMapperInterfacePlugin() {
         shellCallback = new DefaultShellCallback(false);
     }
     
@@ -52,7 +52,7 @@ public class CommonDAOInterfacePlugin extends PluginAdapter {
 
             mapperInterface.setVisibility(JavaVisibility.PUBLIC);
             mapperInterface.addJavaDocLine("/**");
-            mapperInterface.addJavaDocLine(" * " + "DAO公共基类，由MybatisGenerator自动生成请勿修改");
+            mapperInterface.addJavaDocLine(" * " + "Mapper公共基类，由MybatisGenerator自动生成请勿修改");
             mapperInterface.addJavaDocLine(" * " + "@param <Model> The Model Class 这里是泛型不是Model类");
             mapperInterface.addJavaDocLine(" * " + "@param <PK> The Primary Key Class 如果是无主键，则可以用Model来跳过，如果是多主键则是Key类");
 			if (isUseExample()) {
@@ -66,7 +66,12 @@ public class CommonDAOInterfacePlugin extends PluginAdapter {
 			if (isUseExample()) {
 				daoBaseInterfaceJavaType.addTypeArgument(new FullyQualifiedJavaType("E"));
 			}
-
+            // TODO 这里添加自定义插件接口
+            //
+            this.methods.add(SelectBySelectivePlugin.getInterface());
+			this.methods.add(SelectBySelectiveAndReturnOneRecordPlugin.getInterface());
+			this.methods.add(BatchUpdateByPrimaryKeySelectivePlugin.getInterface());
+			this.methods.add(BatchInsertBySelectivePlugin.getInterface());
             if (!this.methods.isEmpty()) {
                 for (Method method : methods) {
                     mapperInterface.addMethod(method);

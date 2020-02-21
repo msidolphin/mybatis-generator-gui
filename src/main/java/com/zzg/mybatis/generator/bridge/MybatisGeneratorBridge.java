@@ -67,6 +67,7 @@ public class MybatisGeneratorBridge {
 	    configuration.addClasspathEntry(connectorLibPath);
         // Table configuration
         TableConfiguration tableConfig = new TableConfiguration(context);
+        TableConfigContext.setTableConfiguration(tableConfig);
         tableConfig.setTableName(generatorConfig.getTableName());
         tableConfig.setDomainObjectName(generatorConfig.getDomainObjectName());
         if(!generatorConfig.isUseExample()) {
@@ -114,7 +115,10 @@ public class MybatisGeneratorBridge {
                 //在上述读写分离被代理的情况下，会得不到正确的主键
             }
 			tableConfig.setGeneratedKey(new GeneratedKey(generatorConfig.getGenerateKeys(), dbType2, true, null));
-		}
+		    TableConfigContext.setPrimaryKeyName(generatorConfig.getGenerateKeys());
+		} else {
+		    TableConfigContext.setPrimaryKeyName("");
+        }
 
         if (generatorConfig.getMapperName() != null) {
             tableConfig.setMapperName(generatorConfig.getMapperName());
@@ -190,7 +194,7 @@ public class MybatisGeneratorBridge {
         serializablePluginConfiguration.addProperty("type", "org.mybatis.generator.plugins.SerializablePlugin");
         serializablePluginConfiguration.setConfigurationType("org.mybatis.generator.plugins.SerializablePlugin");
         context.addPluginConfiguration(serializablePluginConfiguration);
-
+        // TODO 链式调用插件
         // Lombok 插件
         if (generatorConfig.isUseLombokPlugin()) {
             PluginConfiguration pluginConfiguration = new PluginConfiguration();
@@ -245,15 +249,43 @@ public class MybatisGeneratorBridge {
                 context.addPluginConfiguration(pluginConfiguration);
             }
         }
-        if (generatorConfig.isUseDAOExtendStyle()) {
+//        if (generatorConfig.isUseDAOExtendStyle()) {
             if (DbType.MySQL.name().equals(dbType) || DbType.MySQL_8.name().equals(dbType)
                     || DbType.PostgreSQL.name().equals(dbType)) {
                 PluginConfiguration pluginConfiguration = new PluginConfiguration();
 				pluginConfiguration.addProperty("useExample", String.valueOf(generatorConfig.isUseExample()));
-				pluginConfiguration.addProperty("type", "com.zzg.mybatis.generator.plugins.CommonDAOInterfacePlugin");
-                pluginConfiguration.setConfigurationType("com.zzg.mybatis.generator.plugins.CommonDAOInterfacePlugin");
+				pluginConfiguration.addProperty("type", "com.zzg.mybatis.generator.plugins.CommonMapperInterfacePlugin");
+                pluginConfiguration.setConfigurationType("com.zzg.mybatis.generator.plugins.CommonMapperInterfacePlugin");
                 context.addPluginConfiguration(pluginConfiguration);
             }
+//        }
+        // selectBySelective 插件
+        {
+            PluginConfiguration pluginConfiguration = new PluginConfiguration();
+            pluginConfiguration.addProperty("type", "com.zzg.mybatis.generator.plugins.SelectBySelectivePlugin");
+            pluginConfiguration.setConfigurationType("com.zzg.mybatis.generator.plugins.SelectBySelectivePlugin");
+            context.addPluginConfiguration(pluginConfiguration);
+        }
+        // SelectBySelectiveAndReturnOneRecordPlugin
+        {
+            PluginConfiguration pluginConfiguration = new PluginConfiguration();
+            pluginConfiguration.addProperty("type", "com.zzg.mybatis.generator.plugins.SelectBySelectiveAndReturnOneRecordPlugin");
+            pluginConfiguration.setConfigurationType("com.zzg.mybatis.generator.plugins.SelectBySelectiveAndReturnOneRecordPlugin");
+            context.addPluginConfiguration(pluginConfiguration);
+        }
+        // mysql批量插入插件 todo 判断是否为mysql
+        {
+            PluginConfiguration pluginConfiguration = new PluginConfiguration();
+            pluginConfiguration.addProperty("type", "com.zzg.mybatis.generator.plugins.BatchInsertBySelectivePlugin");
+            pluginConfiguration.setConfigurationType("com.zzg.mybatis.generator.plugins.BatchInsertBySelectivePlugin");
+            context.addPluginConfiguration(pluginConfiguration);
+        }
+        // mysql批量更新插件
+        {
+            PluginConfiguration pluginConfiguration = new PluginConfiguration();
+            pluginConfiguration.addProperty("type", "com.zzg.mybatis.generator.plugins.BatchUpdateByPrimaryKeySelectivePlugin");
+            pluginConfiguration.setConfigurationType("com.zzg.mybatis.generator.plugins.BatchUpdateByPrimaryKeySelectivePlugin");
+            context.addPluginConfiguration(pluginConfiguration);
         }
 
         context.setTargetRuntime("MyBatis3");
