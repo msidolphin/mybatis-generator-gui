@@ -44,7 +44,7 @@
             <String fx:value="btn-default" />
           </styleClass>
         </Button>
-        <Button layoutX="615.0" mnemonicParsing="false" onAction="#cancel" style="-fx-border-color: transparent;" text="取消" AnchorPane.bottomAnchor="15.0" AnchorPane.topAnchor="15.0">
+        <Button layoutX="650.0" mnemonicParsing="false" onAction="#cancel" style="-fx-border-color: transparent;" text="取消" AnchorPane.bottomAnchor="15.0" AnchorPane.topAnchor="15.0">
           <styleClass>
             <String fx:value="btn" />
             <String fx:value="btn-default" />

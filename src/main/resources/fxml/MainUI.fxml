@@ -57,9 +57,9 @@
     <center>
         <SplitPane dividerPositions="0.15">
             <items>
-                <AnchorPane maxWidth="500.0" minWidth="100.0" prefHeight="618.0" prefWidth="200.0">
+                <AnchorPane maxWidth="500.0" minWidth="260.0" prefHeight="618.0" prefWidth="260.0">
                     <children>
-                        <TreeView fx:id="leftDBTree" layoutX="-14.0" maxWidth="0.0" prefHeight="545.0" prefWidth="126.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                        <TreeView fx:id="leftDBTree" layoutX="-14.0" maxWidth="0.0" prefHeight="545.0" prefWidth="260.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                     </children>
                 </AnchorPane>
             <AnchorPane minWidth="400.0">
@@ -255,7 +255,7 @@
                                  <children>
                                     <Button mnemonicParsing="false" onAction="#generateCode" text="代码生成">
                                        <styleClass>
-                                          <String fx:value="btn-success" />
+                                          <String fx:value="btn-primary" />
                                           <String fx:value="btn" />
                                        </styleClass>
                                     </Button>

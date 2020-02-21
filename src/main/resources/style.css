@@ -14,27 +14,33 @@
     -fx-border-width: 1px;
     -fx-border-color: transparent;
     -fx-border-radius: 4px;
+    -fx-cursor: pointer;
 }
 
 .btn-primary {
-	-fx-background-color: #378bfa;
+	-fx-background-color: #409bff;
+	-fx-border-color: #409bff;
 	-fx-text-fill: white;
 }
 
 .btn-primary:hover {
-	-fx-background-color: #579efa;
+	-fx-background-color: #66b1ff;
+	-fx-border-color: #66b1ff;
 }
 
 .btn-default {
-    -fx-text-fill: #333;
+    -fx-text-fill: #606266;
     -fx-background-color: #fff;
-    -fx-border-color: #ccc;
+    -fx-border-color: #dcdfe6;
 }
 
 .btn-default:hover {
-    -fx-background-color: #e6e6e6;
-    -fx-border-color: #adadad;
+    -fx-text-fill: #409bff;
+    -fx-background-color: #c6e2ff;
+    -fx-border-color: #ecf5ff;
 }
+
+
 
 .btn-success:hover {
     -fx-text-fill: #fff;
@@ -55,4 +61,18 @@
 }
 
 .consoleTextArea:focused {
+}
+
+.tree-cell:selected {
+    -fx-text-fill: #409bff;
+    -fx-background-color: #ecf5ff;
+}
+.tree-cell:selected .arrow{
+    -fx-text-fill: #409bff;
+    -fx-background-color: #409bff;
+}
+
+
+.tree-view:focused {
+    -fx-background-color: transparent;
 }

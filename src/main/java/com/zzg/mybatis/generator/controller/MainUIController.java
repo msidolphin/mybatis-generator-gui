@@ -117,8 +117,8 @@ public class MainUIController extends BaseFXController {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         ImageView dbImage = new ImageView("icons/computer.png");
-        dbImage.setFitHeight(40);
-        dbImage.setFitWidth(40);
+        dbImage.setFitHeight(32);
+        dbImage.setFitWidth(32);
         connectionLabel.setGraphic(dbImage);
         connectionLabel.setOnMouseClicked(event -> {
             TabPaneController controller = (TabPaneController) loadFXMLPage("新建数据库连接", FXMLPage.NEW_CONNECTION, false);
@@ -126,8 +126,8 @@ public class MainUIController extends BaseFXController {
             controller.showDialogStage();
         });
         ImageView configImage = new ImageView("icons/config-list.png");
-        configImage.setFitHeight(40);
-        configImage.setFitWidth(40);
+        configImage.setFitHeight(32);
+        configImage.setFitWidth(32);
         configsLabel.setGraphic(configImage);
         configsLabel.setOnMouseClicked(event -> {
             GeneratorConfigController controller = (GeneratorConfigController) loadFXMLPage("配置", FXMLPage.GENERATOR_CONFIG, false);
@@ -145,7 +145,6 @@ public class MainUIController extends BaseFXController {
         useLombokPlugin.selectedProperty().addListener((observable, oldValue, newValue) -> {
             needToStringHashcodeEquals.setDisable(newValue);
         });
-
         leftDBTree.setShowRoot(false);
         leftDBTree.setRoot(new TreeItem<>());
         Callback<TreeView<String>, TreeCell<String>> defaultCellFactory = TextFieldTreeCell.forTreeView();
@@ -248,7 +247,7 @@ public class MainUIController extends BaseFXController {
             for (DatabaseConfig dbConfig : dbConfigs) {
                 TreeItem<String> treeItem = new TreeItem<>();
                 treeItem.setValue(dbConfig.getName());
-                ImageView dbImage = new ImageView("icons/computer.png");
+                ImageView dbImage = new ImageView("icons/database.png");
                 dbImage.setFitHeight(16);
                 dbImage.setFitWidth(16);
                 dbImage.setUserData(dbConfig);

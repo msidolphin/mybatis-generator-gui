@@ -6,6 +6,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,7 +29,9 @@ public class MainUI extends Application {
 		FXMLLoader fxmlLoader = new FXMLLoader(url);
 		Parent root = fxmlLoader.load();
 		primaryStage.setResizable(true);
+		primaryStage.getIcons().add(new Image("icons/mybatis-logo.png"));
 		primaryStage.setScene(new Scene(root));
+		primaryStage.setTitle("mybatis-generator-gui");
 		primaryStage.show();
 
 		MainUIController controller = fxmlLoader.getController();

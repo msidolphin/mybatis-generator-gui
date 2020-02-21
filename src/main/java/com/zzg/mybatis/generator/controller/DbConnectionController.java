@@ -39,6 +39,7 @@ public class DbConnectionController extends BaseFXController {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        portField.setText("3306");
     }
 
     final void saveConnection() {
