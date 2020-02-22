@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.slf4j.Logger;
@@ -37,6 +38,7 @@ public abstract class BaseFXController implements Initializable {
             BaseFXController controller = loader.getController();
             dialogStage = new Stage();
             dialogStage.setTitle(title);
+            dialogStage.getIcons().add(new Image("icons/mybatis-logo.png"));
             dialogStage.initModality(Modality.APPLICATION_MODAL);
             dialogStage.initOwner(getPrimaryStage());
             dialogStage.setScene(new Scene(loginNode));

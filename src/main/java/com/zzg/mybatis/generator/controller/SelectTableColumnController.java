@@ -96,6 +96,8 @@ public class SelectTableColumnController extends BaseFXController {
 
     public void setColumnList(ObservableList<UITableColumnVO> columns) {
         columnListView.setItems(columns);
+        columnListView.getSelectionModel().select(0);
+        columnListView.setStyle("-fx-border-color: transparent;");
     }
 
     public void setMainUIController(MainUIController mainUIController) {

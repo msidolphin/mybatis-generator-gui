@@ -1,14 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.collections.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.control.TreeView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="613.0" prefWidth="918.0" stylesheets="@../style.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.zzg.mybatis.generator.controller.MainUIController">
+<BorderPane prefHeight="613.0" prefWidth="918.0" stylesheets="@../style.css" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.zzg.mybatis.generator.controller.MainUIController">
     <top>
         <VBox minWidth="1024.0">
             <children>
@@ -121,7 +134,7 @@
                                                         <Insets left="5.0" right="5.0" />
                                                     </HBox.margin>
                                                 </TextField>
-                                                <Button mnemonicParsing="false" onAction="#chooseProjectFolder" text="选择">
+                                                <Button maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#chooseProjectFolder" prefHeight="27.0" text="选择">
                                                     <styleClass>
                                                         <String fx:value="btn" />
                                                         <String fx:value="btn-default" />
@@ -175,7 +188,7 @@
                                                 <HBox alignment="CENTER_LEFT">
                                                     <children>
                                                         <Label text="生成文件的编码" />
-                                                        <ChoiceBox fx:id="encodingChoice" prefHeight="23.0" prefWidth="71.0">
+                                                        <ChoiceBox fx:id="encodingChoice" prefHeight="23.0" prefWidth="71.0" translateX="5.0">
                                                             <items>
                                                                 <FXCollections fx:factory="observableArrayList">
                                                                     <String fx:value="UTF-8" />
@@ -211,7 +224,7 @@
                                                 </HBox>
                                                 <HBox prefHeight="100.0" prefWidth="200.0">
                                                     <children>
-                                                        <CheckBox fx:id="useDAOExtendStyle" disable="true" mnemonicParsing="false" selected="true" text="DAO方法抽出到公共父接口">
+                                                        <CheckBox fx:id="useDAOExtendStyle" disable="true" mnemonicParsing="false" selected="true" text="Mapper方法抽出到公共父接口">
                                                             <HBox.margin>
                                                                 <Insets right="10.0" />
                                                             </HBox.margin></CheckBox>
@@ -233,19 +246,19 @@
                                         </VBox>
                                         <HBox alignment="CENTER_LEFT" minWidth="200.0" prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.columnIndex="1" GridPane.columnSpan="2147483647" GridPane.rowIndex="10">
                                             <children>
-                                                <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#generateCode" prefHeight="32.0" prefWidth="70.0" text="生成" translateY="10.0">
+                                                <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#generateCode" prefHeight="27.0" prefWidth="70.0" text="生成" translateY="10.0">
                                                     <styleClass>
                                                         <String fx:value="btn-primary" />
                                                         <String fx:value="btn" />
                                                     </styleClass>
                                                 </Button>
-                                                <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#saveGeneratorConfig" prefHeight="32.0" text="保存配置" translateY="10.0">
+                                                <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#saveGeneratorConfig" prefHeight="27.0" text="保存配置" translateY="10.0">
                                                     <styleClass>
                                                         <String fx:value="btn" />
                                                         <String fx:value="btn-default" />
                                                     </styleClass>
                                                 </Button>
-                                                <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#openTargetFolder" prefHeight="32.0" text="打开生成文件夹" translateY="10.0">
+                                                <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#openTargetFolder" prefHeight="27.0" text="打开生成文件夹" translateY="10.0">
                                                     <styleClass>
                                                         <String fx:value="btn" />
                                                         <String fx:value="btn-default" />

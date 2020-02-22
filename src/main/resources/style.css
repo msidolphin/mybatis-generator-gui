@@ -3,7 +3,7 @@
 }
 
 .button {
-	-fx-font-size: 14px;
+	-fx-font-size: 12px;
 }
 
 .tool-bar .button {
@@ -13,14 +13,16 @@
 .btn {
     -fx-border-width: 1px;
     -fx-border-color: transparent;
-    -fx-border-radius: 4px;
+    -fx-border-radius: none;
     -fx-cursor: pointer;
+    -fx-max-height: 27px;
 }
 
 .btn-primary {
 	-fx-background-color: #409bff;
 	-fx-border-color: #409bff;
 	-fx-text-fill: white;
+    -fx-border-radius: none;
 }
 
 .btn-primary:hover {
@@ -75,4 +77,52 @@
 
 .tree-view:focused {
     -fx-background-color: transparent;
+}
+
+.text-field {
+    -fx-border-color: #dcdfe6;
+    -fx-background-color: #fff;
+}
+
+.text-field:focused {
+    -fx-border-color: #409eff;
+    -fx-highlight-fill: #409eff;
+    -fx-highlight-text-fill: white;
+}
+
+.choice-box {
+    -fx-border-color: #dcdfe6;
+    -fx-background-color: #fff;
+}
+
+
+.choice-box:focused {
+    -fx-border-color: #409eff;
+}
+
+.menu-item:focused {
+    -fx-background: #409bff;
+}
+
+.check-box .box {
+    -fx-background-color: #fff;
+    -fx-border-color: #dcdfe6;
+}
+.check-box > .box > .mark {
+    -fx-background-color: #fff;
+}
+.check-box:selected > .box > .mark {
+    -fx-background-color: #606266;
+}
+.table-row-cell:selected .table-cell {
+    -fx-background-color: #408bff;
+    -fx-text-fill: #fff;
+}
+
+.table-view:focused {
+    -fx-border-color: #fff;
+}
+
+.tab-pane:focused > .tab-header-area > .headers-region > .tab:selected .focus-indicator {
+    -fx-border-color: none;
 }
