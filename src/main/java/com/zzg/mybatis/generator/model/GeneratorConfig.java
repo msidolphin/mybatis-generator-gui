@@ -64,7 +64,7 @@ public class GeneratorConfig {
 
 	private boolean useTableNameAlias;
 
-	private boolean useDAOExtendStyle;
+	private boolean useDAOExtendStyle = true;
 
     private boolean useSchemaPrefix;
 
@@ -295,7 +295,7 @@ public class GeneratorConfig {
 	}
 
 	public boolean isUseDAOExtendStyle() {
-		return useDAOExtendStyle;
+		return useDAOExtendStyle && baseMapperDir != null && !baseMapperDir.isEmpty();
 	}
 
 	public String getBaseMapperDir() {

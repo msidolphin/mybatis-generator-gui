@@ -433,7 +433,7 @@ public class MainUIController extends BaseFXController {
         useActualColumnNamesCheckbox.setSelected(generatorConfig.isUseActualColumnNames());
         encodingChoice.setValue(generatorConfig.getEncoding());
         useExample.setSelected(generatorConfig.isUseExample());
-        useDAOExtendStyle.setSelected(generatorConfig.isUseDAOExtendStyle());
+        useDAOExtendStyle.setSelected(true);
         useSchemaPrefix.setSelected(generatorConfig.isUseSchemaPrefix());
         jsr310Support.setSelected(generatorConfig.isJsr310Support());
 

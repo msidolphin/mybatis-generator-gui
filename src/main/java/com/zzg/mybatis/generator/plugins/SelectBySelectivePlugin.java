@@ -20,7 +20,7 @@ import java.util.List;
 
 public class SelectBySelectivePlugin extends NewInterfacePlugin {
 
-    private static String ID = "selectBySelective";
+    static String ID = "selectBySelective";
 
     @Override
     public boolean validate(List<String> list) {

@@ -7,7 +7,7 @@ import org.mybatis.generator.api.dom.java.Parameter;
 
 public class SelectBySelectiveAndReturnOneRecordPlugin extends SelectBySelectivePlugin {
 
-    private static String ID = "selectOne";
+    static String ID = "selectOne";
 
 
     public static Method getInterface () {

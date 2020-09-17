@@ -132,14 +132,14 @@ public class CommonMapperInterfacePlugin extends PluginAdapter {
             primaryKeyTypeJavaType = baseModelJavaType;
         }
         daoSuperType.addTypeArgument(primaryKeyTypeJavaType);
-		interfaze.addImportedType(primaryKeyTypeJavaType);
+        interfaze.addImportedType(primaryKeyTypeJavaType);
 
-		if (isUseExample()) {
-			String exampleType = introspectedTable.getExampleType();
-			FullyQualifiedJavaType exampleTypeJavaType = new FullyQualifiedJavaType(exampleType);
-			daoSuperType.addTypeArgument(exampleTypeJavaType);
-			interfaze.addImportedType(exampleTypeJavaType);
-		}
+        if (isUseExample()) {
+            String exampleType = introspectedTable.getExampleType();
+            FullyQualifiedJavaType exampleTypeJavaType = new FullyQualifiedJavaType(exampleType);
+            daoSuperType.addTypeArgument(exampleTypeJavaType);
+            interfaze.addImportedType(exampleTypeJavaType);
+        }
         interfaze.addImportedType(baseModelJavaType);
         interfaze.addImportedType(daoSuperType);
         if (baseMapperDir != "") interfaze.addImportedType(new FullyQualifiedJavaType(baseMapperDir));

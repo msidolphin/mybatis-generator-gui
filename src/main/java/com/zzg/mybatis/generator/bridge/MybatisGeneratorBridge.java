@@ -247,7 +247,7 @@ public class MybatisGeneratorBridge {
                 context.addPluginConfiguration(pluginConfiguration);
             }
         }
-//        if (generatorConfig.isUseDAOExtendStyle()) {
+        if (generatorConfig.isUseDAOExtendStyle()) {
             if (DbType.MySQL.name().equals(dbType) || DbType.MySQL_8.name().equals(dbType)
                     || DbType.PostgreSQL.name().equals(dbType)) {
                 PluginConfiguration pluginConfiguration = new PluginConfiguration();
@@ -256,7 +256,15 @@ public class MybatisGeneratorBridge {
                 pluginConfiguration.setConfigurationType("com.zzg.mybatis.generator.plugins.CommonMapperInterfacePlugin");
                 context.addPluginConfiguration(pluginConfiguration);
             }
-//        }
+        } else {
+            if (DbType.MySQL.name().equals(dbType) || DbType.MySQL_8.name().equals(dbType)
+                    || DbType.PostgreSQL.name().equals(dbType)) {
+                PluginConfiguration pluginConfiguration = new PluginConfiguration();
+                pluginConfiguration.addProperty("type", "com.zzg.mybatis.generator.plugins.MethodInjectPlugin");
+                pluginConfiguration.setConfigurationType("com.zzg.mybatis.generator.plugins.MethodInjectPlugin");
+                context.addPluginConfiguration(pluginConfiguration);
+            }
+        }
         // selectBySelective 插件
         {
             PluginConfiguration pluginConfiguration = new PluginConfiguration();

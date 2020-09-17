@@ -19,7 +19,7 @@ import org.mybatis.generator.config.GeneratedKey;
 
 public class BatchInsertBySelectivePlugin extends NewInterfacePlugin {
 
-    private static String ID = "batchInsertBySelective";
+    static String ID = "batchInsertBySelective";
 
     @Override
     public boolean sqlMapDocumentGenerated(Document document, IntrospectedTable introspectedTable) {

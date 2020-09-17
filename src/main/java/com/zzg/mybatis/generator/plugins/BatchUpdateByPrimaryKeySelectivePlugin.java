@@ -19,7 +19,7 @@ import java.util.List;
 
 public class BatchUpdateByPrimaryKeySelectivePlugin extends NewInterfacePlugin {
 
-    private static String ID = "batchUpdateByPrimaryKeySelective";
+    static String ID = "batchUpdateByPrimaryKeySelective";
 
     @Override
     public boolean sqlMapDocumentGenerated(Document document, IntrospectedTable introspectedTable) {
