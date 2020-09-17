@@ -79,7 +79,7 @@ public class BatchUpdateByPrimaryKeySelectivePlugin extends NewInterfacePlugin {
             }
             where.append(MyBatis3FormattingUtilities.getAliasedEscapedColumnName(pk) + " ");
             where.append(Statement.EQUAL);
-            where.append(MyBatis3FormattingUtilities.getParameterClause(pk));
+            where.append(MyBatis3FormattingUtilities.getParameterClause(pk, itemPrefix + "."));
             forEachElement.addElement(new TextElement(where.toString()));
         }
         if (this.context.getPlugins().sqlMapInsertSelectiveElementGenerated(updateElement, introspectedTable)) {
