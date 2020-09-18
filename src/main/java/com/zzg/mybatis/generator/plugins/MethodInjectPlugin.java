@@ -13,8 +13,13 @@ import java.util.List;
 
 public class MethodInjectPlugin extends PluginAdapter {
 
+    private static final FullyQualifiedJavaType PARAM_ANNOTATION_TYPE = new FullyQualifiedJavaType("org.apache.ibatis.annotations.Param");
+    private static final FullyQualifiedJavaType LIST_TYPE = FullyQualifiedJavaType.getNewListInstance();
+
     @Override
     public boolean clientGenerated(Interface interfaze, TopLevelClass topLevelClass, IntrospectedTable introspectedTable) {
+        interfaze.addImportedType(LIST_TYPE);
+        interfaze.addImportedType(PARAM_ANNOTATION_TYPE);
         String domainObjectName = introspectedTable.getTableConfiguration().getDomainObjectName();
         interfaze.addMethod(MethodHelper.createMethod(SelectBySelectivePlugin.ID, new FullyQualifiedJavaType("List<" + domainObjectName + ">"), new Parameter(
                 new FullyQualifiedJavaType(domainObjectName), "record")));
@@ -25,7 +30,7 @@ public class MethodInjectPlugin extends PluginAdapter {
                 new FullyQualifiedJavaType("@Param(" + '"' + "list" + '"' +") " + "List<" + domainObjectName + ">"), "records"
         )));
         interfaze.addMethod(MethodHelper.createMethod(BatchInsertBySelectivePlugin.ID, new FullyQualifiedJavaType("int"), new Parameter(
-                new FullyQualifiedJavaType("@Param(" + '"' + "list" + '"' +") List<Model>"), "records"
+                new FullyQualifiedJavaType("@Param(" + '"' + "list" + '"' +") " + "List<" + domainObjectName + ">"), "records"
         )));
         return true;
     }
